@@ -18,9 +18,19 @@
             overflow: hidden;
         }
         #game-container {
+            width: 100vw;
+            height: 100vh;
             box-shadow: 0 0 20px rgba(0, 255, 128, 0.2);
             border-radius: 8px;
             overflow: hidden;
+        }
+
+        /* Limitar a 800x600 solo en modo escritorio (pantallas grandes) */
+        @media (min-width: 801px) {
+            #game-container {
+                width: 800px;
+                height: 600px;
+            }
         }
     </style>
 </head>

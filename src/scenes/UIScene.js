@@ -23,7 +23,6 @@ export default class UIScene extends Phaser.Scene {
         };
 
         this.scoreText = this.add.text(0, 0, 'Puntos: 0', textStyle).setOrigin(1, 0);
-        this.inventoryText = this.add.text(0, 0, `Inventario: 0/${this.maxInventory}`, textStyle).setOrigin(1, 0);
         this.environmentText = this.add.text(0, 0, 'Contaminación: 100%', textStyle).setOrigin(1, 0);
         this.feedbackText = this.add.text(0, 0, '', { ...textStyle, fill: '#ff5555', fontSize: '18px', align: 'center' }).setOrigin(0.5, 0);
 
@@ -91,12 +90,15 @@ export default class UIScene extends Phaser.Scene {
             updateJoystick(pointer);
         });
 
-        joyZone.on('pointermove', (pointer) => {
+        // Al usar 'this.input' (global de la escena) en lugar de 'joyZone',
+        // el joystick nunca perderá el foco aunque el dedo se cruce a la mitad derecha o salga de los bordes.
+        this.input.on('pointermove', (pointer) => {
             if (isDragging && pointer.id === pointerId) updateJoystick(pointer);
         });
 
-        joyZone.on('pointerup', (pointer) => { if (pointer.id === pointerId) resetJoystick(); });
-        joyZone.on('pointerout', (pointer) => { if (pointer.id === pointerId) resetJoystick(); });
+        this.input.on('pointerup', (pointer) => { 
+            if (pointer.id === pointerId) resetJoystick(); 
+        });
 
         // --- BOTÓN ACCIÓN (Derecha) ---
         this.actionBtn = this.add.circle(width - 100, height - 100, 50, 0x2196f3, 0.6).setInteractive();
@@ -121,13 +123,13 @@ export default class UIScene extends Phaser.Scene {
             if (!isDragging) this.joyThumb.setPosition(joyX, joyY);
             joyZone.setSize(newWidth / 2, newHeight);
 
-            // Reposicionar Botón de Acción
-            this.actionBtn.setPosition(newWidth - 100, newHeight - 100);
-            this.actionText.setPosition(newWidth - 100, newHeight - 100);
+            // Reposicionar Botón de Acción (alineado a la misma altura que el Joystick: newHeight - 120)
+            this.actionBtn.setPosition(newWidth - 100, newHeight - 120);
+            this.actionText.setPosition(newWidth - 100, newHeight - 120);
             
             // Reposicionar Panel Derecho
             const panelWidth = 190;
-            const panelHeight = 80;
+            const panelHeight = 60;
             const panelX = newWidth - panelWidth - 10;
             const panelY = 10;
 
@@ -136,11 +138,15 @@ export default class UIScene extends Phaser.Scene {
             this.infoPanelBg.fillRoundedRect(panelX, panelY, panelWidth, panelHeight, 8);
             
             this.scoreText.setPosition(newWidth - 20, panelY + 10);
-            this.inventoryText.setPosition(newWidth - 20, panelY + 30);
-            this.environmentText.setPosition(newWidth - 20, panelY + 50);
+            this.environmentText.setPosition(newWidth - 20, panelY + 35);
             
             // Feedback text flotante en el centro superior
             this.feedbackText.setPosition(newWidth / 2, 80);
+            
+            // Re-dibujar los iconos de la mochila si existen para acomodarlos en X e Y
+            if (this.inventoryCount > 0) {
+                this.updateInventory({ items: this.inventoryIcons.map(i => i.texture.key) });
+            }
         };
 
         this.scale.on('resize', handleResize);
@@ -151,39 +157,39 @@ export default class UIScene extends Phaser.Scene {
 
     updateInventory(data) {
         this.inventoryCount = data.items.length;
-        this.inventoryText.setText(`Inventario: ${this.inventoryCount}/${this.maxInventory}`);
 
         // Limpiar iconos anteriores
         this.inventoryIcons.forEach(icon => icon.destroy());
         this.inventoryIcons = [];
 
-        const startX = 40;
-        const startY = 100;
         const slotSize = 46;
         const padding = 10;
+        
+        // Pila vertical alineada debajo del panel derecho
+        const startX = this.cameras.main.width - slotSize - 20; 
+        const startY = 85; 
 
-        // Dibujar Cuadrícula/Slots (visual de fondo) solo una vez
-        if (!this.slotsDrawn) {
-            this.slotsDrawn = true;
-            this.slotGraphics = this.add.graphics();
-            this.slotGraphics.lineStyle(2, 0x444444, 1);
-            this.slotGraphics.fillStyle(0x222222, 0.8);
-            for(let i = 0; i < this.maxInventory; i++) {
-                this.slotGraphics.fillRect(startX + i * (slotSize + padding), startY, slotSize, slotSize);
-                this.slotGraphics.strokeRect(startX + i * (slotSize + padding), startY, slotSize, slotSize);
-            }
+        // Limpiar y dibujar la cuadrícula de fondo cada vez para manejar resizes correctamente
+        if (this.slotGraphics) this.slotGraphics.destroy();
+        this.slotGraphics = this.add.graphics();
+        this.slotGraphics.lineStyle(2, 0x444444, 1);
+        this.slotGraphics.fillStyle(0x222222, 0.8);
+        
+        for(let i = 0; i < this.maxInventory; i++) {
+            this.slotGraphics.fillRect(startX, startY + i * (slotSize + padding), slotSize, slotSize);
+            this.slotGraphics.strokeRect(startX, startY + i * (slotSize + padding), slotSize, slotSize);
         }
         
         data.items.forEach((itemType, index) => {
-            // Posicionar en el centro del slot correspondiente
-            const x = startX + index * (slotSize + padding) + (slotSize / 2);
-            const y = startY + (slotSize / 2);
+            // Posicionar en el centro del slot correspondiente (Verticalmente)
+            const x = startX + (slotSize / 2);
+            const y = startY + index * (slotSize + padding) + (slotSize / 2);
             const icon = this.add.image(x, y, itemType);
             
-            // Ajustar forzadamente el tamaño visual a 36x36 px para que encaje perfecto en el slot de 46x46
+            // Ajustar forzadamente el tamaño visual a 36x36 px para que encaje perfecto
             icon.setDisplaySize(36, 36);
             
-            // Destacar el elemento al frente de la cola (FIFO - el que se soltará primero)
+            // Destacar el elemento al frente de la cola (FIFO)
             if (index === 0) {
                 icon.setAlpha(1);
                 // Breve tween para destacar el elemento listo para salir
