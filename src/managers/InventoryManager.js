@@ -33,23 +33,25 @@ export default class InventoryManager {
         const item = this.items.shift();
 
         if (this.matchesContainer(item, containerType)) {
-            points += 10;
+            points = 10;
             validItems = 1;
-            // Se asume que el reciclaje fue exitoso
+        } else {
+            points = -5;
+            invalidItems = 1;
+        }
+
+        // 1. Siempre emitir el puntaje PRIMERO, para que el HUD se actualice antes que nada
+        events.emit(EVENTS.SCORE_UPDATED, { delta: points });
+
+        // 2. Notificar al motor si se limpió contaminación o si hay penalización de dispersión
+        if (validItems > 0) {
             events.emit(EVENTS.ITEMS_RECYCLED, { points, validItems });
         } else {
-            // Reciclaje fallido, penalización. El item desaparece igual
-            points -= 5;
-            invalidItems = 1;
             events.emit(EVENTS.WRONG_CONTAINER, { item, containerType });
         }
 
-        // Siempre avisamos que el inventario se actualizó (para redibujar la pila visual)
-        events.emit(EVENTS.INVENTORY_EMPTIED, { items: this.items }); // Usamos EMPTIED temporalmente como 'changed'
-        
-        if (points !== 0) {
-            events.emit(EVENTS.SCORE_UPDATED, { delta: points });
-        }
+        // 3. Notificar a la UI para que redibuje los íconos restantes en la mochila
+        events.emit(EVENTS.INVENTORY_EMPTIED, { items: this.items }); 
 
         return { success: true, points, validItems, invalidItems };
     }

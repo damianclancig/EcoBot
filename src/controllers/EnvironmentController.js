@@ -12,12 +12,9 @@ export default class EnvironmentController {
         this.capaSucia = capaSucia;
         this.recycledCount = 0;
         
-        // Capa de smog visual superpuesta (fijada a la cámara)
-        this.smog = scene.add.rectangle(
-            0, 0, 
-            scene.scale.width, scene.scale.height, 
-            0x2a2a2a, 0.7
-        ).setOrigin(0, 0).setScrollFactor(0).setDepth(100); // Frente a todo
+        // Capa oscura (Smog) - muy grande para cubrir pantallas panorámicas
+        this.smog = scene.add.rectangle(0, 0, 3000, 3000, 0x2a2a2a, 0.7)
+            .setOrigin(0, 0).setScrollFactor(0).setDepth(100); // Frente a todo
 
         events.on(EVENTS.ITEMS_RECYCLED, this.handleRecycled, this);
     }

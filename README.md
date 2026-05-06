@@ -8,6 +8,7 @@ EcoBot es un videojuego educativo de aventuras en formato Top-Down desarrollado 
 *   **Inventario Táctico (FIFO):** Sistema de recolección en forma de cola. El primer objeto que recoges es el primero que debes reciclar, fomentando la estrategia al moverse por el mapa.
 *   **Restauración Visual en Tiempo Real:** El entorno pasa de estar cubierto por una densa capa de *smog* oscuro a un ecosistema limpio y brillante a medida que reciclas los desechos.
 *   **Múltiples Categorías de Residuos:** Incluye clasificación para Plástico, Vidrio, Papel, Basura Orgánica y Residuos Electrónicos (E-waste).
+*   **Cross-Platform y Responsivo:** Totalmente jugable en PC (teclado) y dispositivos móviles (touch). La cámara y las interfaces (menús, HUD) se ajustan al 100% de la pantalla sin importar la rotación o resolución.
 *   **Diseño Vectorial:** Assets escalables y limpios en formato SVG, interfaz de usuario (HUD) minimalista e intuitiva.
 
 ## 🛠️ Tecnologías Utilizadas
@@ -20,8 +21,12 @@ EcoBot es un videojuego educativo de aventuras en formato Top-Down desarrollado 
 
 Ayuda a EcoBot a encontrar y recolectar todas las piezas de basura dispersas en la ciudad y deposítalas en los contenedores adecuados. 
 
-*   **Flechas del Teclado (⬆️ ⬇️ ⬅️ ➡️)**: Mover a EcoBot.
-*   **Barra Espaciadora**: Depositar el objeto activo (el que está parpadeando en la esquina superior izquierda del HUD) en el contenedor frente a ti.
+*   **En Computadora**: 
+    *   **Flechas del Teclado (⬆️ ⬇️ ⬅️ ➡️)**: Mover a EcoBot.
+    *   **Barra Espaciadora**: Depositar el objeto activo (el que está en la cima de tu inventario) en el contenedor frente a ti.
+*   **En Dispositivos Móviles**:
+    *   **Joystick Analógico (Lado Izquierdo)**: Toca y arrastra en cualquier lugar de la mitad izquierda de la pantalla para un movimiento fluido en 360 grados.
+    *   **Botón RECICLAR (Lado Derecho)**: Púlsalo cuando estés cerca del contenedor correcto para depositar la basura.
 
 ¡Cuidado! Si te equivocas de contenedor perderás puntos y el objeto volverá a dispersarse en algún lugar aleatorio de la ciudad. El juego se gana cuando la contaminación llega al 0%.
 

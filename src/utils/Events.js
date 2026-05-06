@@ -13,7 +13,8 @@ export const EVENTS = {
     ITEMS_RECYCLED: 'items_recycled',
     SCORE_UPDATED: 'score_updated',
     ENVIRONMENT_RESTORED: 'environment_restored',
-    WRONG_CONTAINER: 'wrong_container'
+    WRONG_CONTAINER: 'wrong_container',
+    MOBILE_ACTION: 'mobile_action'
 };
 
 export default events;

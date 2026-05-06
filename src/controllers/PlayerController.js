@@ -38,22 +38,36 @@ export default class PlayerController {
 
     update() {
         const speed = this.isOverweight ? 80 : 160;
-
-        // Reset de velocidad en cada frame
         this.sprite.setVelocity(0);
 
-        if (this.cursors.left.isDown) {
-            this.sprite.setVelocityX(-speed);
-            this.sprite.setFlipX(false); // Mirar a la izquierda (original)
-        } else if (this.cursors.right.isDown) {
-            this.sprite.setVelocityX(speed);
-            this.sprite.setFlipX(true); // Mirar a la derecha (espejo)
-        }
+        const uiScene = this.scene.scene.get('UIScene');
+        const mInput = uiScene ? uiScene.mobileInputs : null;
 
-        if (this.cursors.up.isDown) {
-            this.sprite.setVelocityY(-speed);
-        } else if (this.cursors.down.isDown) {
-            this.sprite.setVelocityY(speed);
+        // Si el joystick se está usando (algún vector es distinto de 0)
+        if (mInput && (mInput.vx !== 0 || mInput.vy !== 0)) {
+            // Movimiento analógico completo (360 grados)
+            this.sprite.setVelocityX(mInput.vx * speed);
+            this.sprite.setVelocityY(mInput.vy * speed);
+            
+            // Dirección visual
+            if (mInput.vx < -0.1) this.sprite.setFlipX(false);
+            else if (mInput.vx > 0.1) this.sprite.setFlipX(true);
+            
+        } else {
+            // Fallback a movimiento clásico por teclado (8 direcciones estáticas)
+            if (this.cursors.left.isDown) {
+                this.sprite.setVelocityX(-speed);
+                this.sprite.setFlipX(false);
+            } else if (this.cursors.right.isDown) {
+                this.sprite.setVelocityX(speed);
+                this.sprite.setFlipX(true);
+            }
+
+            if (this.cursors.up.isDown) {
+                this.sprite.setVelocityY(-speed);
+            } else if (this.cursors.down.isDown) {
+                this.sprite.setVelocityY(speed);
+            }
         }
     }
 

@@ -68,6 +68,9 @@ export default class GameScene extends Phaser.Scene {
 
         // Input
         this.spaceKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+        
+        // Contenedores grupales para acceso en mobile
+        this.containersGroup = containers;
 
         // Interacciones (Overlaps)
         this.physics.add.overlap(this.player.sprite, this.itemsGroup, this.collectItem, null, this);
@@ -76,12 +79,16 @@ export default class GameScene extends Phaser.Scene {
         // Dispersar basura si se tira en el contenedor equivocado
         events.on(EVENTS.WRONG_CONTAINER, this.scatterItem, this);
         
+        // Acción de Botón Mobile
+        events.on(EVENTS.MOBILE_ACTION, this.handleMobileAction, this);
+        
         // Condición de Victoria
         events.on(EVENTS.ENVIRONMENT_RESTORED, this.checkWinCondition, this);
         
         // Limpieza de eventos al destruir la escena
         this.events.once('shutdown', () => {
             events.off(EVENTS.WRONG_CONTAINER, this.scatterItem, this);
+            events.off(EVENTS.MOBILE_ACTION, this.handleMobileAction, this);
             events.off(EVENTS.ENVIRONMENT_RESTORED, this.checkWinCondition, this);
         });
     }
@@ -101,6 +108,15 @@ export default class GameScene extends Phaser.Scene {
             const containerType = container.getData('containerType');
             this.inventoryManager.recycle(containerType);
         }
+    }
+
+    handleMobileAction() {
+        // En mobile, como el botón se presiona en cualquier momento, 
+        // verificamos explícitamente si el jugador está colisionando con algún contenedor
+        this.physics.world.overlap(this.player.sprite, this.containersGroup, (player, container) => {
+            const containerType = container.getData('containerType');
+            this.inventoryManager.recycle(containerType);
+        });
     }
 
     checkWinCondition(data) {

@@ -16,26 +16,29 @@ export default class WinScene extends Phaser.Scene {
         this.cameras.main.setBackgroundColor('#1b5e20'); // Verde victoria oscuro
 
         // Texto principal
-        this.add.text(width / 2, height * 0.3, '¡Misión Cumplida!', {
+        const titleText = this.add.text(width / 2, height * 0.3, '¡Misión Cumplida!', {
             fontFamily: 'Inter, sans-serif',
-            fontSize: '64px',
+            fontSize: '54px',
             fontStyle: 'bold',
             fill: '#ffffff',
             stroke: '#000000',
-            strokeThickness: 4
+            strokeThickness: 4,
+            align: 'center',
+            wordWrap: { width: width * 0.9 }
         }).setOrigin(0.5);
 
         // Subtítulo
-        this.add.text(width / 2, height * 0.45, 'Has limpiado el 100% de la ciudad.\n¡El ecosistema está a salvo gracias a ti!', {
+        const subText = this.add.text(width / 2, height * 0.45, 'Has limpiado el 100% de la ciudad.\n¡El ecosistema está a salvo gracias a ti!', {
             fontFamily: 'Inter, sans-serif',
             fontSize: '24px',
             fill: '#e8f5e9',
             align: 'center',
-            lineSpacing: 10
+            lineSpacing: 10,
+            wordWrap: { width: width * 0.9 }
         }).setOrigin(0.5);
 
         // Puntuación
-        this.add.text(width / 2, height * 0.6, `Puntuación Final: ${this.finalScore}`, {
+        const scoreText = this.add.text(width / 2, height * 0.6, `Puntuación Final: ${this.finalScore}`, {
             fontFamily: 'Inter, sans-serif',
             fontSize: '32px',
             fontStyle: 'bold',
@@ -52,7 +55,13 @@ export default class WinScene extends Phaser.Scene {
             fontStyle: 'bold',
             fill: '#ffffff'
         }).setOrigin(0.5);
-
+        
+        // Escala inicial
+        const initialScale = width < 500 ? width / 500 : 1;
+        titleText.setScale(initialScale);
+        subText.setScale(initialScale);
+        scoreText.setScale(initialScale);
+        
         menuBtn.on('pointerover', () => {
             menuBtn.setFillStyle(0x1565c0);
             this.tweens.add({ targets: [menuBtn, menuText], scale: 1.05, duration: 100 });
@@ -86,5 +95,28 @@ export default class WinScene extends Phaser.Scene {
                 ease: 'Sine.inOut'
             });
         }
+        
+        // --- RESPONSIVE RESIZE ---
+        this.scale.on('resize', (gameSize) => {
+            const newWidth = gameSize.width;
+            const newHeight = gameSize.height;
+
+            titleText.setPosition(newWidth / 2, newHeight * 0.3);
+            titleText.setStyle({ wordWrap: { width: newWidth * 0.9 } });
+            
+            subText.setPosition(newWidth / 2, newHeight * 0.45);
+            subText.setStyle({ wordWrap: { width: newWidth * 0.9 } });
+            
+            scoreText.setPosition(newWidth / 2, newHeight * 0.6);
+            menuBtn.setPosition(newWidth / 2, newHeight * 0.8);
+            menuText.setPosition(newWidth / 2, newHeight * 0.8);
+            
+            const scaleFactor = newWidth < 500 ? newWidth / 500 : 1;
+            titleText.setScale(scaleFactor);
+            subText.setScale(scaleFactor);
+            scoreText.setScale(scaleFactor);
+            menuBtn.setScale(scaleFactor);
+            menuText.setScale(scaleFactor);
+        });
     }
 }
