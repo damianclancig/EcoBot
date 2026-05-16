@@ -49,7 +49,7 @@ export default class UIScene extends Phaser.Scene {
         // --- JOYSTICK ANALÓGICO (Izquierda) ---
         let joyX = 120;
         let joyY = height - 120;
-        const maxRadius = 60; // Límite de arrastre
+        let maxRadius = 60; // Límite de arrastre
 
         this.joyBase = this.add.circle(joyX, joyY, maxRadius, 0x4caf50, 0.2);
         this.joyThumb = this.add.circle(joyX, joyY, 35, 0x4caf50, 0.8).setInteractive();
@@ -116,16 +116,37 @@ export default class UIScene extends Phaser.Scene {
             const newWidth = gameSize.width;
             const newHeight = gameSize.height;
 
+            const isSmallScreen = newWidth < 600 || newHeight < 500;
+            
+            // Dimensiones Responsivas
+            maxRadius = isSmallScreen ? 40 : 60;
+            const thumbRadius = isSmallScreen ? 25 : 35;
+            const joyOffsetX = isSmallScreen ? 70 : 120;
+            const joyOffsetY = isSmallScreen ? 70 : 120;
+
+            const actionOffsetX = isSmallScreen ? 70 : 100;
+            const actionOffsetY = isSmallScreen ? 70 : 120;
+            const actionRadius = isSmallScreen ? 35 : 50;
+            const actionFontSize = isSmallScreen ? '12px' : '16px';
+
             // Reposicionar Joystick
-            joyX = 120;
-            joyY = newHeight - 120;
+            joyX = joyOffsetX;
+            joyY = newHeight - joyOffsetY;
             this.joyBase.setPosition(joyX, joyY);
+            this.joyBase.setRadius(maxRadius);
+            this.joyThumb.setRadius(thumbRadius);
             if (!isDragging) this.joyThumb.setPosition(joyX, joyY);
             joyZone.setSize(newWidth / 2, newHeight);
 
-            // Reposicionar Botón de Acción (alineado a la misma altura que el Joystick: newHeight - 120)
-            this.actionBtn.setPosition(newWidth - 100, newHeight - 120);
-            this.actionText.setPosition(newWidth - 100, newHeight - 120);
+            // Reposicionar Botón de Acción
+            this.actionBtn.setPosition(newWidth - actionOffsetX, newHeight - actionOffsetY);
+            this.actionBtn.setRadius(actionRadius);
+            this.actionText.setPosition(newWidth - actionOffsetX, newHeight - actionOffsetY);
+            this.actionText.setFontSize(actionFontSize);
+            
+            // Actualizar área interactiva del botón
+            this.actionBtn.setInteractive(new Phaser.Geom.Circle(actionRadius, actionRadius, actionRadius), Phaser.Geom.Circle.Contains);
+            
             
             // Reposicionar Panel Derecho
             const panelWidth = 190;
