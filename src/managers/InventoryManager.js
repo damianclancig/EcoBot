@@ -6,11 +6,11 @@ export default class InventoryManager {
         this.maxCapacity = maxCapacity;
     }
 
-    addItem(itemType) {
+    addItem(itemData) {
         if (this.isFull()) return false;
         
-        this.items.push(itemType);
-        events.emit(EVENTS.ITEM_COLLECTED, { items: this.items, type: itemType });
+        this.items.push(itemData);
+        events.emit(EVENTS.ITEM_COLLECTED, { items: this.items.map(i => i.type), type: itemData.type });
         
         if (this.isFull()) {
             events.emit(EVENTS.INVENTORY_FULL);
@@ -30,9 +30,9 @@ export default class InventoryManager {
         let invalidItems = 0;
 
         // Sacar solo el primer elemento que entró a la cola (FIFO)
-        const item = this.items.shift();
+        const itemData = this.items.shift();
 
-        if (this.matchesContainer(item, containerType)) {
+        if (this.matchesContainer(itemData.type, containerType)) {
             points = 10;
             validItems = 1;
         } else {
@@ -47,24 +47,27 @@ export default class InventoryManager {
         if (validItems > 0) {
             events.emit(EVENTS.ITEMS_RECYCLED, { points, validItems });
         } else {
-            events.emit(EVENTS.WRONG_CONTAINER, { item, containerType });
+            events.emit(EVENTS.WRONG_CONTAINER, { item: itemData.type, containerType });
         }
 
         // 3. Notificar a la UI para que redibuje los íconos restantes en la mochila
-        events.emit(EVENTS.INVENTORY_EMPTIED, { items: this.items }); 
+        events.emit(EVENTS.INVENTORY_EMPTIED, { items: this.items.map(i => i.type) }); 
 
-        return { success: true, points, validItems, invalidItems };
+        return { success: true, points, validItems, invalidItems, itemData };
     }
 
     matchesContainer(itemType, containerType) {
-        const matches = {
-            'organico': ['manzana', 'platano'],
-            'plastico': ['plastico_botella', 'bolsa'],
-            'papel': ['papel_hoja', 'papel_diario', 'papel_servilleta', 'carton_leche', 'carton_crema', 'carton'],
-            'vidrio': ['vidrio_botella'],
-            'ewaste': ['bateria', 'movil']
-        };
-
-        return matches[containerType]?.includes(itemType) || false;
+        try {
+            // Extraer el color dinámicamente según la nueva nomenclatura:
+            // itemType: "ecoBot-blue-box.png" -> index 1 es "blue"
+            const itemColor = itemType.split('-')[1]; 
+            
+            // containerType: "ecoBot-container-blue.png" -> index 2 es "blue.png", luego le quitamos el .png
+            const containerColor = containerType.split('-')[2].split('.')[0]; 
+            
+            return itemColor === containerColor;
+        } catch (e) {
+            return false;
+        }
     }
 }

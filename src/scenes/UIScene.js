@@ -145,7 +145,7 @@ export default class UIScene extends Phaser.Scene {
             
             // Re-dibujar los iconos de la mochila si existen para acomodarlos en X e Y
             if (this.inventoryCount > 0) {
-                this.updateInventory({ items: this.inventoryIcons.map(i => i.texture.key) });
+                this.updateInventory({ items: this.inventoryIcons.map(i => i.frame.name) });
             }
         };
 
@@ -184,7 +184,8 @@ export default class UIScene extends Phaser.Scene {
             // Posicionar en el centro del slot correspondiente (Verticalmente)
             const x = startX + (slotSize / 2);
             const y = startY + index * (slotSize + padding) + (slotSize / 2);
-            const icon = this.add.image(x, y, itemType);
+            // itemType ahora trae el frameName exacto, por lo que usamos el atlas 'ecoBot-objects'
+            const icon = this.add.image(x, y, 'ecoBot-objects', itemType);
             
             // Ajustar forzadamente el tamaño visual a 36x36 px para que encaje perfecto
             icon.setDisplaySize(36, 36);

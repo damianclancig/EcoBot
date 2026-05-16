@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 64">
-  <ellipse cx="24" cy="60" rx="16" ry="4" fill="#000000" opacity="0.2"/>
-  <path d="M 10 16 L 38 16 L 34 60 L 14 60 Z" fill="#4caf50" stroke="#388e3c" stroke-width="1"/>
-  <path d="M 10 16 L 16 16 L 18 60 L 14 60 Z" fill="#ffffff" opacity="0.2" />
-  <path d="M 6 12 L 42 12 L 40 16 L 8 16 Z" fill="#388e3c" />
-  <rect x="18" y="8" width="12" height="4" rx="2" fill="#388e3c" />
-  <text x="24" y="42" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#ffffff" text-anchor="middle" stroke="#000000" stroke-width="0.5">O</text>
-</svg>

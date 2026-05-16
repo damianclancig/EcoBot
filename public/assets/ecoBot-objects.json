@@ -1,0 +1,650 @@
+{
+	"textures": [
+		{
+			"image": "ecoBot-objects.png?v=e9579c41dd6d",
+			"format": "RGBA8888",
+			"size": {
+				"w": 509,
+				"h": 1106
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "ecoBot-blue-box.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 64
+					},
+					"frame": {
+						"x": 115,
+						"y": 0,
+						"w": 64,
+						"h": 64
+					}
+				},
+				{
+					"filename": "ecoBot-blue-newspaper-1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 128,
+						"h": 129
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 128,
+						"h": 129
+					},
+					"frame": {
+						"x": 83,
+						"y": 395,
+						"w": 128,
+						"h": 129
+					}
+				},
+				{
+					"filename": "ecoBot-blue-newspaper-2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 131,
+						"h": 127
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 131,
+						"h": 127
+					},
+					"frame": {
+						"x": 378,
+						"y": 268,
+						"w": 131,
+						"h": 127
+					}
+				},
+				{
+					"filename": "ecoBot-blue-newspaper-3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 133,
+						"h": 107
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 133,
+						"h": 107
+					},
+					"frame": {
+						"x": 300,
+						"y": 161,
+						"w": 133,
+						"h": 107
+					}
+				},
+				{
+					"filename": "ecoBot-blue-newspaper-4.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 64
+					},
+					"frame": {
+						"x": 179,
+						"y": 0,
+						"w": 64,
+						"h": 64
+					}
+				},
+				{
+					"filename": "ecoBot-blue-papers.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 131,
+						"h": 124
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 131,
+						"h": 124
+					},
+					"frame": {
+						"x": 161,
+						"y": 268,
+						"w": 131,
+						"h": 124
+					}
+				},
+				{
+					"filename": "ecoBot-brown-apple.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 78,
+						"h": 111
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 78,
+						"h": 111
+					},
+					"frame": {
+						"x": 0,
+						"y": 268,
+						"w": 78,
+						"h": 111
+					}
+				},
+				{
+					"filename": "ecoBot-brown-bread.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 140,
+						"h": 106
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 140,
+						"h": 106
+					},
+					"frame": {
+						"x": 160,
+						"y": 161,
+						"w": 140,
+						"h": 106
+					}
+				},
+				{
+					"filename": "ecoBot-brown-fish.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 207,
+						"h": 97
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 207,
+						"h": 97
+					},
+					"frame": {
+						"x": 192,
+						"y": 64,
+						"w": 207,
+						"h": 97
+					}
+				},
+				{
+					"filename": "ecoBot-brown-food.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 160,
+						"h": 97
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 160,
+						"h": 97
+					},
+					"frame": {
+						"x": 0,
+						"y": 161,
+						"w": 160,
+						"h": 97
+					}
+				},
+				{
+					"filename": "ecoBot-brown-fruit.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 64
+					},
+					"frame": {
+						"x": 243,
+						"y": 0,
+						"w": 64,
+						"h": 64
+					}
+				},
+				{
+					"filename": "ecoBot-brown-gas.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 78,
+						"h": 139
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 78,
+						"h": 139
+					},
+					"frame": {
+						"x": 211,
+						"y": 395,
+						"w": 78,
+						"h": 139
+					}
+				},
+				{
+					"filename": "ecoBot-container-blue.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 219,
+						"h": 190
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 219,
+						"h": 190
+					},
+					"frame": {
+						"x": 153,
+						"y": 536,
+						"w": 219,
+						"h": 190
+					}
+				},
+				{
+					"filename": "ecoBot-container-brown.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 220,
+						"h": 190
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 220,
+						"h": 190
+					},
+					"frame": {
+						"x": 0,
+						"y": 726,
+						"w": 220,
+						"h": 190
+					}
+				},
+				{
+					"filename": "ecoBot-container-green.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 221,
+						"h": 190
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 221,
+						"h": 190
+					},
+					"frame": {
+						"x": 220,
+						"y": 726,
+						"w": 221,
+						"h": 190
+					}
+				},
+				{
+					"filename": "ecoBot-container-red.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 221,
+						"h": 190
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 221,
+						"h": 190
+					},
+					"frame": {
+						"x": 0,
+						"y": 916,
+						"w": 221,
+						"h": 190
+					}
+				},
+				{
+					"filename": "ecoBot-container-yellow.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 220,
+						"h": 190
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 220,
+						"h": 190
+					},
+					"frame": {
+						"x": 221,
+						"y": 916,
+						"w": 220,
+						"h": 190
+					}
+				},
+				{
+					"filename": "ecoBot-green-glass.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 64
+					},
+					"frame": {
+						"x": 307,
+						"y": 0,
+						"w": 64,
+						"h": 64
+					}
+				},
+				{
+					"filename": "ecoBot-red-batery.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 83,
+						"h": 113
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 83,
+						"h": 113
+					},
+					"frame": {
+						"x": 78,
+						"y": 268,
+						"w": 83,
+						"h": 113
+					}
+				},
+				{
+					"filename": "ecoBot-red-cell-1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 64
+					},
+					"frame": {
+						"x": 371,
+						"y": 0,
+						"w": 64,
+						"h": 64
+					}
+				},
+				{
+					"filename": "ecoBot-red-cell-2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 64
+					},
+					"frame": {
+						"x": 435,
+						"y": 0,
+						"w": 64,
+						"h": 64
+					}
+				},
+				{
+					"filename": "ecoBot-red-cell-3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 64
+					},
+					"frame": {
+						"x": 0,
+						"y": 64,
+						"w": 64,
+						"h": 64
+					}
+				},
+				{
+					"filename": "ecoBot-red-electric.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 166,
+						"h": 141
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 166,
+						"h": 141
+					},
+					"frame": {
+						"x": 289,
+						"y": 395,
+						"w": 166,
+						"h": 141
+					}
+				},
+				{
+					"filename": "ecoBot-yellow-bottle.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 64
+					},
+					"frame": {
+						"x": 64,
+						"y": 64,
+						"w": 64,
+						"h": 64
+					}
+				},
+				{
+					"filename": "ecoBot-yellow-goma.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 153,
+						"h": 161
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 153,
+						"h": 161
+					},
+					"frame": {
+						"x": 0,
+						"y": 536,
+						"w": 153,
+						"h": 161
+					}
+				},
+				{
+					"filename": "ecoBot-yellow-lata-1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 64
+					},
+					"frame": {
+						"x": 128,
+						"y": 64,
+						"w": 64,
+						"h": 64
+					}
+				},
+				{
+					"filename": "ecoBot-yellow-lata-2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 83,
+						"h": 128
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 83,
+						"h": 128
+					},
+					"frame": {
+						"x": 0,
+						"y": 395,
+						"w": 83,
+						"h": 128
+					}
+				},
+				{
+					"filename": "ecoBot-yellow-lata-3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 86,
+						"h": 125
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 86,
+						"h": 125
+					},
+					"frame": {
+						"x": 292,
+						"y": 268,
+						"w": 86,
+						"h": 125
+					}
+				},
+				{
+					"filename": "ecoBot-yellow-tapa-1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 59,
+						"h": 48
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 59,
+						"h": 48
+					},
+					"frame": {
+						"x": 56,
+						"y": 0,
+						"w": 59,
+						"h": 48
+					}
+				},
+				{
+					"filename": "ecoBot-yellow-tapa-2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 56,
+						"h": 45
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 56,
+						"h": 45
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 56,
+						"h": 45
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:b75d2f035de837b958f178aeb6f03881:91ac904919e5836b84542bc5ea1a1cb2:25793bd4613ed94e15cb329bef050e82$"
+	}
+}

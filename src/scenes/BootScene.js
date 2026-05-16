@@ -6,18 +6,14 @@ export default class BootScene extends Phaser.Scene {
     }
 
     preload() {
-        // Cargar Assets de Tiled y Sprites
-        this.load.image('ecosistema', 'assets/tileset.png');
-        this.load.tilemapTiledJSON('mapa', 'assets/map.json');
-        this.load.image('ecobot', 'assets/ecoBot_sprite.png');
+        // Cargar Assets (Sin map.json, mapa procedural)
+        this.load.image('mapaEcoBot', 'assets/ecoBot-map.png');
+        
+        // Sprite animado del jugador
+        this.load.atlas('ecobot', 'assets/ecoBot.png', 'assets/ecoBot.json');
 
-        // Cargar SVGs de Basura
-        const svgs = [
-            'plastico_botella', 'bolsa', 'vidrio_botella', 'papel_hoja',
-            'papel_diario', 'papel_servilleta', 'carton_leche', 'carton_crema',
-            'manzana', 'platano', 'bateria', 'movil'
-        ];
-        svgs.forEach(svg => this.load.svg(svg, `assets/${svg}.svg`));
+        // Cargar Texture Atlas de Objetos (Items y Contenedores)
+        this.load.atlas('ecoBot-objects', 'assets/ecoBot-objects.png', 'assets/ecoBot-objects.json');
 
         // Generar primitivas gráficas por código (ej. Fondo ajedrez)
         let graphics = this.make.graphics({ x: 0, y: 0, add: false });
@@ -31,10 +27,6 @@ export default class BootScene extends Phaser.Scene {
         graphics.fillRect(0, 32, 32, 32);
         graphics.generateTexture('checkerboard', 64, 64);
         graphics.clear();
-
-        // Cargar SVGs de Contenedores
-        const containerTypes = ['organico', 'plastico', 'papel', 'vidrio', 'ewaste'];
-        containerTypes.forEach(type => this.load.svg(`container_${type}`, `assets/container_${type}.svg`));
     }
 
     create() {
