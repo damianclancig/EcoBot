@@ -121,11 +121,11 @@ export default class UIScene extends Phaser.Scene {
             // Dimensiones Responsivas
             maxRadius = isSmallScreen ? 40 : 60;
             const thumbRadius = isSmallScreen ? 25 : 35;
-            const joyOffsetX = isSmallScreen ? 70 : 120;
-            const joyOffsetY = isSmallScreen ? 70 : 120;
+            const joyOffsetX = isSmallScreen ? 80 : 120;
+            const joyOffsetY = isSmallScreen ? 140 : 120;
 
-            const actionOffsetX = isSmallScreen ? 70 : 100;
-            const actionOffsetY = isSmallScreen ? 70 : 120;
+            const actionOffsetX = isSmallScreen ? 80 : 100;
+            const actionOffsetY = isSmallScreen ? 140 : 120;
             const actionRadius = isSmallScreen ? 35 : 50;
             const actionFontSize = isSmallScreen ? '12px' : '16px';
 
